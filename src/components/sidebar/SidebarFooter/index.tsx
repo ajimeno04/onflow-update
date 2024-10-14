@@ -11,13 +11,15 @@ import { loadBeamer } from '@/services/beamer'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { selectCookies, CookieAndTermType } from '@/store/cookiesAndTermsSlice'
 import { openCookieBanner } from '@/store/popupSlice'
-import { ListItem } from '@mui/material'
-import DebugToggle from '../DebugToggle'
 import HelpCenterIcon from '@/public/images/sidebar/help-center.svg'
+import { Link, ListItem, SvgIcon, Typography } from '@mui/material'
+import DebugToggle from '../DebugToggle'
 import { HELP_CENTER_URL, IS_PRODUCTION } from '@/config/constants'
 import { useCurrentChain } from '@/hooks/useChains'
 import Track from '@/components/common/Track'
 import { OVERVIEW_EVENTS } from '@/services/analytics'
+import darkPalette from '@/components/theme/darkPalette'
+import ProtofireLogo from '@/public/images/protofire-logo.svg'
 
 const SidebarFooter = (): ReactElement => {
   const dispatch = useAppDispatch()
@@ -61,6 +63,20 @@ const SidebarFooter = (): ReactElement => {
           </a>
         </ListItem>
       </Track>
+      <SidebarListItemText sx={{ marginLeft: 2 }}>
+        <Typography variant="caption">
+          Supported by{' '}
+          <SvgIcon
+            component={ProtofireLogo}
+            inheritViewBox
+            fontSize="small"
+            sx={{ verticalAlign: 'middle', mx: 0.5 }}
+          />
+          <Link href="https://protofire.io" sx={{ color: darkPalette.primary.main, textDecoration: 'none' }}>
+            Protofire
+          </Link>
+        </Typography>
+      </SidebarListItemText>
     </SidebarList>
   )
 }
